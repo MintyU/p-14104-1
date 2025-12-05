@@ -61,7 +61,8 @@ public class ApiV1PostCommentController {
 
         return new RsData(
                 "200-1",
-                "댓글이 삭제되었습니다."
+                "%d번 댓글이 삭제되었습니다.".formatted(id),
+                new PostCommentDto(postComment)
         );
     }
 }
