@@ -8,16 +8,16 @@ import java.time.LocalDateTime;
 @Getter
 public class PostDto {
     private int id;
-    private LocalDateTime createdDate;
-    private LocalDateTime modifiedDate;
-    private String subject;
-    private String body;
+    private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
+    private String title;
+    private String content;
 
     public PostDto(Post post) {
         this.id = post.getId();
-        this.createdDate = post.getCreateDate();
-        this.modifiedDate = post.getModifyDate();
-        this.subject = post.getTitle();
-        this.body = post.getContent();
+        this.createDate = post.getCreateDate();
+        this.modifyDate = post.getModifyDate();
+        this.title = post.getTitle();
+        this.content = post.getContent();
     }
 }
