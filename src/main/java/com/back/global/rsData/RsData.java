@@ -7,4 +7,7 @@ public record RsData<T>(
         String msg,
         T data
 ) {
+    public RsData(String resultCode, String msg) {
+        this(resultCode, msg, null);
+    }
 }
