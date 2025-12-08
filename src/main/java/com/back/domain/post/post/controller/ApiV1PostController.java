@@ -51,24 +51,38 @@ public class ApiV1PostController {
         );
     }
 
-    record PostWriteReqBody(
-       @NotBlank
-       @Size(min = 2, max = 100)
-       String title,
-       @NotBlank
-       @Size(min = 2, max = 100)
-       String content
-    ){}
+    public record PostWriteReqBody(
+            @NotBlank
+            @Size(min = 2, max = 100)
+            String title,
+            @NotBlank
+            @Size(min = 2, max = 100)
+            String content
+    ) {
+    }
+
+    public record PostWriteResBody(
+            long totalCount,
+            PostDto post
+    ) {
+    }
 
     @Transactional
     @PostMapping
-    public RsData<PostDto> write(@Valid @RequestBody PostWriteReqBody form) {
+    public RsData<PostWriteResBody> write(@Valid @RequestBody PostWriteReqBody form) {
         Post post = postService.write(form.title, form.content);
+
+        long totalCount = postService.count();
+
+        PostWriteResBody data = new PostWriteResBody(
+                totalCount,
+                new PostDto(post)
+        );
 
         return new RsData<>(
                 "200-1",
                 "%d번 글이 생성되었습니다.".formatted(post.getId()),
-                new PostDto(post)
+                data
         );
     }
 }
