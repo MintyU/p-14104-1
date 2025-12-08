@@ -51,7 +51,7 @@ public class ApiV1PostController {
         );
     }
 
-    record PostWriteForm(
+    record PostWriteReqBody(
        @NotBlank
        @Size(min = 2, max = 100)
        String title,
@@ -62,7 +62,7 @@ public class ApiV1PostController {
 
     @Transactional
     @PostMapping
-    public RsData<PostDto> write(@Valid @RequestBody PostWriteForm form) {
+    public RsData<PostDto> write(@Valid @RequestBody PostWriteReqBody form) {
         Post post = postService.write(form.title, form.content);
 
         return new RsData<>(
