@@ -64,7 +64,7 @@ public class ApiV1PostCommentController {
     }
 
 
-    record PostCommentModifyReqBody(
+    public record PostCommentModifyReqBody(
        @NotBlank
        @Size(min = 2, max = 100)
        String content
