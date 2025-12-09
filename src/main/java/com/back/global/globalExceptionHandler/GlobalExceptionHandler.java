@@ -1,4 +1,4 @@
-package com.back.global.globalExceptionHander;
+package com.back.global.globalExceptionHandler;
 
 import com.back.global.rsData.RsData;
 import lombok.RequiredArgsConstructor;
