@@ -19,6 +19,7 @@ public class ResponseAspect {
 
     @Around("""
                 (
+                    within(@org.springframework.stereotype.Controller *) ||
                     within(@org.springframework.web.bind.annotation.RestController *) &&
                     (
                         @annotation(org.springframework.web.bind.annotation.GetMapping) ||
@@ -34,11 +35,8 @@ public class ResponseAspect {
         // 원래 메서드 실행
         Object proceed = joinPoint.proceed();
 
-        // RsData 타입이면 상태 코드 설정
-        if (proceed instanceof RsData) {
-            RsData<?> rsData = (RsData<?>) proceed;
-            response.setStatus(rsData.statusCode());
-        }
+        RsData<?> rsData = (RsData<?>) proceed;
+        response.setStatus(rsData.statusCode());
 
         return proceed;
     }
