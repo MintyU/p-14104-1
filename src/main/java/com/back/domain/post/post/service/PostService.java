@@ -36,8 +36,8 @@ public class PostService {
         post.modify(title, content);
     }
 
-    public void writeComment(Post post, String content) {
-        post.addComment(content);
+    public PostComment writeComment(Post post, String content) {
+        return post.addComment(content);
     }
 
     public boolean deleteComment(Post post, PostComment postComment) {
@@ -50,5 +50,9 @@ public class PostService {
 
     public void delete(Post post) {
         postRepository.delete(post);
+    }
+
+    public void flush() {
+        postRepository.flush();
     }
 }
